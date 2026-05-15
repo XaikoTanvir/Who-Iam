@@ -1,5 +1,5 @@
  name: Mirai Bot Setup
-
+start:jobs
 on:
   push:
     branches: [ "main" ]
