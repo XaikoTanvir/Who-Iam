@@ -1,5 +1,5 @@
- name: Mirai Bot Setup
-start:jobs
+{
+
 on:
   push:
     branches: [ "main" ]
@@ -24,3 +24,4 @@ jobs:
 
     - name: Check
       run: node --check index.js
+}
