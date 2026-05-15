@@ -1,32 +1,26 @@
- Mirai Smart Workflow Configuration - 2026 Edition
-BotName: "—𝐄𝐰𝐫 𝐁𝐛𝐳 ✨💋"
-Prefix: "!"
-AdminID: "100095091196701"
-Intelligence:
-  DefaultAI: "Gemini-1.5-Flash"
-  AutoChat: true           
-  MemoryRetention: 10         
-Connection:
-  AppStatePath: "./appstate.json"
-  UserAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)..."
-  AutoLogin: true
-  ProxyUsage: false 
+ name: Mirai Bot Setup
 
-Features:
-  - AutoDownloader: 
-      Trigger: ["facebook.com", "tiktok.com", "youtube.com"]
-      Action: "Auto-extract and upload video file"
-  
-  - SmartWelcome:
-      Trigger: "New Member Joins Group"
-      Action: "Generate a funny/savage intro using AI"
-  
-  - AntiSpam:
-      Limit: 5 messages / 2 seconds
-      Action: "Temporary Mute"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-DataStorage:
-  UserPreferences: "./includes/database/users.json"
-  GroupSettings: "./includes/database/groups.json"
- 
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install
+      run: npm install
+
+    - name: Check
+      run: node --check index.js
